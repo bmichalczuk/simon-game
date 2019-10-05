@@ -7,6 +7,38 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Hello World</h1>
+    <div class="simon">
+        <div class="panel">
+            <h1 class="panel__heading">Simon</h1>
+            <div class="row">
+                <div class="screen">
+                    <div class="screen__screen led"></div>
+                    <div class="screen__sub">Count</div>
+                </div>
+                <div class="start">
+                    <button title="Start game" class="start__btn control-btn">
+                        <span class="visually-hidden">Start game</span>
+                    </button>
+                    <div>Start</div>
+                </div>
+                <div class="strict">
+                    <div class="led"></div>
+                    <button title="Turn strict mode on" class="strict__btn control-btn">
+                        <span class="visually-hidden">Strict mode</span>
+                    </button>
+                    <div class="strict__sub">Strict mode</div>
+                </div>    
+            </div>
+            <div class="power">
+                On<checkbox></checkbox>of
+            </div>
+        </div>
+        <div class="board">
+            <button class="board__btn board__btn-1"></button>
+            <button class="board__btn board__btn-2"></button>
+            <button class="board__btn board__btn-3"></button>
+            <button class="board__btn board__btn-4"></button>
+        </div>
+    </div>
 </body>
 </html>
