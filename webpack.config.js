@@ -20,14 +20,14 @@ const config = {
             },
             {
                 test: /\.scss$/, 
-                use: [
+                use: ["style-loader",
                     {
                       loader: MiniCssExtractPlugin.loader,
                       options: {
                         hmr: process.env.NODE_ENV === 'development',
                       },
                     },
-                    'css-loader'
+                    'css-loader',"sass-loader"
                 ]
             },
             {
