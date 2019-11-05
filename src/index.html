@@ -4,33 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Alfa+Slab+One|Oswald|VT323&display=swap" rel="stylesheet">
     <title>Document</title>
 </head>
 <body>
     <div class="simon">
         <div class="settings">
-            <h1 class="panel__heading">Simon</h1>
-            <div class="row">
-                <div class="screen">
-                    <div class="screen__screen led"></div>
-                    <div class="screen__sub">Count</div>
+            <h1 class="settings__heading">Simon</h1>
+            <div class="settings__controls">
+                <div class="counter">
+                    <div class="counter__screen"></div>
+                    <div class="Counter__title">Count</div>
                 </div>
                 <div class="start">
-                    <button title="Start game" class="start__btn control-btn">
+                    <button title="Start game" class="settings__btn settings__btn--start">
                         <span class="visually-hidden">Start game</span>
                     </button>
                     <div>Start</div>
                 </div>
                 <div class="strict">
-                    <div class="led"></div>
-                    <button title="Turn strict mode on" class="strict__btn control-btn">
+                    <div class="strict__led"></div>
+                    <button title="Turn strict mode on" class="settings__btn settings__btn--strict">
                         <span class="visually-hidden">Strict mode</span>
                     </button>
                     <div class="strict__sub">Strict mode</div>
                 </div>    
             </div>
             <div class="power">
-                On<checkbox></checkbox>of
+                <input type="checkbox" id="power-switch" title="Turn on and turn of game" class="power__input visually-hidden"/>
+                Off
+                <label class="power__label" for="power-switch">
+                    <span class="visually-hidden">Power switch</span>
+                    <span class="power__switch"></span>
+                </label>
+                On
             </div>
         </div>
         <div class="board">

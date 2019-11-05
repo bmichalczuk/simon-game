@@ -1,12 +1,27 @@
-@use "./scss/colors";
+@import "./scss/colors";
+@import "./scss/settings";
 
-body {
-    color: red;
-    @include color.colorDark;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+body {
+    background-color: #a57a3b;
+    color: $colorDark;
+}
+
 .simon {
-    background: black;
-    .settings {
-        background: white;
-    }
+    background: $colorBright;
+    height: 100vh;
+    
+}
+.visually-hidden { 
+    position: absolute;
+    height: 1px; 
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px 1px 1px 1px);
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
 }
