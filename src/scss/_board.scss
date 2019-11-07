@@ -1,0 +1,22 @@
+.board {
+    flex: 1;
+    border: 5px solid;
+    display: flex;
+    flex-wrap: wrap;
+    &__btn {
+        flex: 1 0 50%;
+        border: 5px solid $colorDark;
+        &--1 {
+            background-color: $colorBtn1;
+        }
+        &--2 {
+            background-color: $colorBtn2;
+        }
+        &--3 {
+            background-color: $colorBtn3;
+        }
+        &--4 {
+            background-color: $colorBtn4;
+        }
+    }
+}

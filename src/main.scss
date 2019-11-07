@@ -1,6 +1,6 @@
 @import "./scss/colors";
 @import "./scss/settings";
-
+@import "./scss/board";
 * {
     box-sizing: border-box;
     margin: 0;
@@ -14,7 +14,8 @@ body {
 .simon {
     background: $colorBright;
     height: 100vh;
-    
+    display: flex;
+    flex-direction: column;
 }
 .visually-hidden { 
     position: absolute;

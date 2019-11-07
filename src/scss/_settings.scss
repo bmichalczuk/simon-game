@@ -84,13 +84,17 @@
 .power {
     text-align: center;
     margin: 1em .5em .5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
     &__label {
         background: $colorDark;
         padding: 3px;
         display: inline-block;
         height: 1.5em;
         width: 3em;
-        margin: auto;
+        margin: 0 .5em;
         position: relative;
         cursor: pointer;
         &:before {
