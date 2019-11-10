@@ -16,6 +16,15 @@ body {
     height: 100vh;
     display: flex;
     flex-direction: column;
+    @media (min-width: 700px) {
+        position: relative;
+        border-radius: 50%;
+        width: 35em;
+        height: 35em;
+        overflow: hidden;
+        border: 1em solid $colorDark;
+        margin: 3em auto;
+    }
 }
 .visually-hidden { 
     position: absolute;

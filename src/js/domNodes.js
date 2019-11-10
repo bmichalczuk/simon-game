@@ -1,0 +1,1 @@
+export const counterScreen = document.querySelector("#counter-screen");

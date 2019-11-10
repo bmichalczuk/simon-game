@@ -1,22 +1,47 @@
 .board {
     flex: 1;
-    border: 5px solid;
+    border: 0 5px 5px 5px solid;
     display: flex;
     flex-wrap: wrap;
     &__btn {
         flex: 1 0 50%;
         border: 5px solid $colorDark;
+        cursor: pointer;
         &--1 {
             background-color: $colorBtn1;
+            &:active {
+                background-color: $colorBtn1--active;
+            }
+            @media(min-width: 700px) {
+                border-width: 0 10px 10px 0;
+            }
         }
         &--2 {
             background-color: $colorBtn2;
+            &:active {
+                background-color: $colorBtn2--active;
+            }
+            @media(min-width: 700px) {
+                border-width: 0 0 10px 10px;
+            }
         }
         &--3 {
             background-color: $colorBtn3;
+            &:active {
+                background-color: $colorBtn3--active;
+            }
+            @media(min-width: 700px) {
+                border-width: 10px 10px 0 0;
+            }
         }
         &--4 {
             background-color: $colorBtn4;
+            &:active {
+                background-color: $colorBtn4--active;
+            }
+            @media(min-width: 700px) {
+                border-width: 10px 0 0 10px;
+            }
         }
     }
 }

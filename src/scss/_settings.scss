@@ -13,6 +13,20 @@
         display: flex;
         justify-content: space-around;
     }
+    @media(min-width: 700px) {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        
+        width: 60%;
+        height: 60%;
+        border-radius: 50%;
+        border-width: .5em;
+        display:flex;
+        justify-content: center;
+        flex-direction: column;
+    }
 }
 .counter, .start, .strict {
     font-family: "Oswald", Arial, Helvetica, sans-serif;
@@ -26,12 +40,17 @@
     position: relative;
 }
 .counter {
-    
     &__screen {
+        font-family: "VT323", monospace;
+        font-size: 2em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $colorLedActive;
         background: $colorLedInactive;
-        height: 2.5em;
-        width: 5em;
-        border: 5px solid;
+        height: 2.5rem;
+        width: 5rem;
+        border: 5px solid $colorDark;
         border-radius: 10px;
         margin-bottom: 5px;
     }
