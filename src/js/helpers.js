@@ -1,0 +1,1 @@
+export const maybe = (when, fn) => when && fn(); 
