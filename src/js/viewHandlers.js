@@ -1,15 +1,15 @@
 import * as dom from "./domNodes";
 
-export const handleCounterScreen = ({power, gameStarted, currenQuery}) => {
+export const handleCounterScreen = ({power, gameStarted, gameQuery}) => {
     if(power && gameStarted) {
-        dom.counterScreen.textContent = currenQuery.length;
+        dom.counterScreen.textContent = gameQuery.length;
     } else if(power && !gameStarted) {
         dom.counterScreen.textContent = "--";
     } else {
         dom.counterScreen.textContent = "";
     }
 };
-export const handleStrictModeLed = ({strict, power}) => {
+export const handleStrictModeLed = ({strict}) => {
     console.log("strict: " + strict);
     strict
     ? dom.strictModeBtn.classList.add("settings__btn--strict--active")

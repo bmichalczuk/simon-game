@@ -1,4 +1,4 @@
-
+import {getRandomNumberInRange} from "./helpers";
 const stateHandler = (fireEvent) => {
     return {
         set(target, property, value) {
@@ -15,13 +15,19 @@ const stateHandler = (fireEvent) => {
                 case "gameStarted":
                     console.log("game starteddd");
                     target.gameStarted = value;
-                    target.gameStarted ? fireEvent("startGame") : fireEvent("stopGame");
+                    target.gameStarted ? fireEvent("newRound") : fireEvent("stopGame");
+                    console.log(target);
                     return true;
-                case "strictMode":
+                case "gameQuery": 
+                    target.gameQuery.push(value);
+                    fireEvent("queryUpdated");
+                    return true;
+                case "strict":
                     console.log("strict modeee");
                     target.strict = value;
                     fireEvent("strictMode");
                     return true;
+                    
                 default:
                     target[property] = value;
                     return true;
