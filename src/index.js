@@ -1,3 +1,5 @@
+import "core-js/stable";
+import "regenerator-runtime/runtime";
 import "./main.scss";
 import * as dom from "./js/domNodes";
 import {
@@ -9,21 +11,37 @@ import {
     strictMode,
     updateGameQuery,
     clearGameQuery,
-    clearPlayerQuery
+    clearPlayerMovesCount,
+    playerMove
 
 } from "./js/state";
 import {handleCounterScreen, handleStrictModeLed} from "./js/viewHandlers";
 import {enableKeyboard, disableKeyboard} from "./js/keyboard";
+import {playSound} from "./js/audio";
+import {playQuery} from "./js/keyboard";
 
-const {startGameBtn,strictModeBtn,powerStich} = dom;
+const {startGameBtn,strictModeBtn,powerStich, board} = dom;
 subscribeState("powerOn", handleCounterScreen);
 subscribeState("powerOf", turnOfGame); //handleCounterScreen, stopGame, disableKeyboard, strictMode);
-subscribeState("roundStart", updateGameQuery, handleCounterScreen, enableKeyboard);
+subscribeState("roundStart", clearPlayerMovesCount, disableKeyboard, updateGameQuery, handleCounterScreen, playQuery, enableKeyboard);
 subscribeState("stopGame", handleCounterScreen, disableKeyboard, handleCounterScreen, handleStrictModeLed);
 subscribeState("strictMode", handleStrictModeLed);
 subscribeState("gameQueryUpdated", handleCounterScreen);
+subscribeState("error", clearPlayerMovesCount, playQuery);
 
 powerStich.addEventListener("change", togglePower);
 startGameBtn.addEventListener("click", startGame);
 strictModeBtn.addEventListener("click", strictMode);
+
+const handleBoardClick = async e => {
+    if(e.target.tagName === "BUTTON") {
+        const {btnIndex} = e.target.dataset;
+        await playSound(btnIndex);
+        playerMove(btnIndex);
+    };
+}
+
+
+board.addEventListener("mousedown", handleBoardClick);
+
 

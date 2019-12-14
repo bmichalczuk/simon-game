@@ -13,8 +13,8 @@ const data = {
     strict: false,
     gameStarted: false,
     playerMove: "",
-    gameQuery: [],
-    playerQuery: []
+    playerMoveCount: 0,
+    gameQuery: []
 };
 
 const subscribers = {
@@ -25,6 +25,7 @@ const subscribers = {
     roundEnd: [],
     stopGame: [],
     strictMode: [],
+    playerMove: [],
     gameQueryUpdated: [],
     playerQueryUpdated: [],
     error: [], 
@@ -41,7 +42,9 @@ export const subscribeState = (evName, ...fn) => {
 export const fireEvent = (evName) => {
     subscribers[evName].forEach(fn => fn(data));
 };
+
 const stateHandler = handler(fireEvent);
+
 const state = new Proxy(data, stateHandler);
 //state menagment functions
 
@@ -68,8 +71,10 @@ export const strictMode =  onlyWithPowerOn(() => {
 
 export const updateGameQuery = updateArray(state.gameQuery)(getRandomNumberInRange);
 
-export const updatePlayerQuery = updateArray(state.playerQuery);
+export const playerMove = field =>  state.playerMove = field;
 
-export const clearPlayerQuery = clearArray(state.playerQuery);
+export const clearPlayerMovesCount = () => state.playerMoveCount = 0;
+
 export const clearGameQuery = clearArray(state.gameQuery);
+
 export default state;

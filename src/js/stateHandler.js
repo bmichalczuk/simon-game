@@ -13,15 +13,29 @@ const stateHandler = (fireEvent) => {
                     return true;
                     
                 case "gameStarted":
-                    console.log("game starteddd");
                     target.gameStarted = value;
-                    target.gameStarted ? fireEvent("newRound") : fireEvent("stopGame");
-                    console.log(target);
+                    target.gameStarted ? fireEvent("roundStart") : fireEvent("stopGame");
                     return true;
                 case "gameQuery": 
                     target.gameQuery.push(value);
-                    fireEvent("queryUpdated");
+                    fireEvent("nextRound");
                     return true;
+                case "playerMove":
+                    const {playerMoveCount, gameQuery} = target;
+                    console.log(value);
+                    if (gameQuery[playerMoveCount] === Number(value)) {
+                        console.log("trafiony");
+                        target.playerMoveCount++ ;
+                        target.playerMoveCount === gameQuery.length && fireEvent("roundStart");
+                        console.log(target);
+                        return true;
+                    }
+                    console.log("dupa");
+                    fireEvent("error");
+                    return true;
+                case "round": 
+                    
+                
                 case "strict":
                     console.log("strict modeee");
                     target.strict = value;
