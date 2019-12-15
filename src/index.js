@@ -15,7 +15,7 @@ import {
     playerMove
 
 } from "./js/state";
-import {handleCounterScreen, handleStrictModeLed} from "./js/viewHandlers";
+import {handleCounterScreen, handleStrictModeLed, counterBlink} from "./js/viewHandlers";
 import {enableKeyboard, disableKeyboard} from "./js/keyboard";
 import {playSound} from "./js/audio";
 import {playQuery} from "./js/keyboard";
@@ -27,8 +27,8 @@ subscribeState("roundStart", clearPlayerMovesCount, disableKeyboard, updateGameQ
 subscribeState("stopGame", handleCounterScreen, disableKeyboard, handleCounterScreen, handleStrictModeLed);
 subscribeState("strictMode", handleStrictModeLed);
 subscribeState("gameQueryUpdated", handleCounterScreen);
-subscribeState("error", clearPlayerMovesCount, playQuery);
-
+subscribeState("error",disableKeyboard, clearPlayerMovesCount,counterBlink,handleCounterScreen, playQuery, enableKeyboard);
+subscribeState("strictError", clearGameQuery, clearPlayerMovesCount, handleCounterScreen, updateGameQuery, handleCounterScreen, playQuery, enableKeyboard);
 powerStich.addEventListener("change", togglePower);
 startGameBtn.addEventListener("click", startGame);
 strictModeBtn.addEventListener("click", strictMode);

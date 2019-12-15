@@ -27,11 +27,12 @@ const stateHandler = (fireEvent) => {
                         console.log("trafiony");
                         target.playerMoveCount++ ;
                         target.playerMoveCount === gameQuery.length && fireEvent("roundStart");
-                        console.log(target);
+                        console.log(target.playerMoveCount);
                         return true;
                     }
-                    console.log("dupa");
+                    console.log(target.strict);
                     fireEvent("error");
+                
                     return true;
                 case "round": 
                     

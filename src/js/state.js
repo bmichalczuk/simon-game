@@ -29,8 +29,8 @@ const subscribers = {
     gameQueryUpdated: [],
     playerQueryUpdated: [],
     error: [], 
-    restartGame: []
-    
+    restartGame: [],
+    strictError: []
 };
 
 export const subscribeState = (evName, ...fn) => {
@@ -39,8 +39,11 @@ export const subscribeState = (evName, ...fn) => {
     }
 };
     
-export const fireEvent = (evName) => {
-    subscribers[evName].forEach(fn => fn(data));
+export const fireEvent = async (evName) => {
+    for(let i=0, max=subscribers[evName].length; i< max; i++) {
+        await subscribers[evName][i](data);
+    }
+    //subscribers[evName].forEach(fn => fn(data));
 };
 
 const stateHandler = handler(fireEvent);

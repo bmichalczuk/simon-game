@@ -29,9 +29,6 @@ export const playQuery = async ({gameQuery}) => {
         const index = gameQuery[i];
         await sleep(100);
         const btn = document.querySelector(`[data-btn-index="${index}"]`);
-        console.log(btn.dataset.btnIndex);
-        console.log(btn.classList);
         await simulateHit(btn);
-        console.log(btn.classList);
     }
 };
