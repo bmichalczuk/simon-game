@@ -30,8 +30,8 @@ const stateHandler = (fireEvent) => {
                         console.log(target.playerMoveCount);
                         return true;
                     }
-                    console.log(target.strict);
-                    fireEvent("error");
+                    target.strict ? fireEvent("strictError") : fireEvent("error");
+                    
                 
                     return true;
                 case "round": 

@@ -20,15 +20,59 @@ import {enableKeyboard, disableKeyboard} from "./js/keyboard";
 import {playSound} from "./js/audio";
 import {playQuery} from "./js/keyboard";
 
+const playErrorSound = () => {
+    console.log("sounddd");
+    playSound("error")
+};
 const {startGameBtn,strictModeBtn,powerStich, board} = dom;
-subscribeState("powerOn", handleCounterScreen);
-subscribeState("powerOf", turnOfGame); //handleCounterScreen, stopGame, disableKeyboard, strictMode);
-subscribeState("roundStart", clearPlayerMovesCount, disableKeyboard, updateGameQuery, handleCounterScreen, playQuery, enableKeyboard);
-subscribeState("stopGame", handleCounterScreen, disableKeyboard, handleCounterScreen, handleStrictModeLed);
-subscribeState("strictMode", handleStrictModeLed);
-subscribeState("gameQueryUpdated", handleCounterScreen);
-subscribeState("error",disableKeyboard, clearPlayerMovesCount,counterBlink,handleCounterScreen, playQuery, enableKeyboard);
-subscribeState("strictError", clearGameQuery, clearPlayerMovesCount, handleCounterScreen, updateGameQuery, handleCounterScreen, playQuery, enableKeyboard);
+
+
+subscribeState("powerOn", 
+    handleCounterScreen
+);
+subscribeState("powerOf", 
+    turnOfGame
+); //handleCounterScreen, stopGame, disableKeyboard, strictMode);
+subscribeState("roundStart", 
+    clearPlayerMovesCount, 
+    disableKeyboard, 
+    updateGameQuery, 
+    handleCounterScreen, 
+    playQuery, 
+    enableKeyboard
+);
+subscribeState("stopGame", 
+    handleCounterScreen, 
+    disableKeyboard, 
+    handleCounterScreen, 
+    handleStrictModeLed
+);
+subscribeState("strictMode", 
+    handleStrictModeLed
+);
+subscribeState("gameQueryUpdated", 
+    handleCounterScreen
+);
+subscribeState("error",
+    disableKeyboard, 
+    clearPlayerMovesCount,
+    playErrorSound,
+    counterBlink,
+    handleCounterScreen, 
+    playQuery, 
+    enableKeyboard
+);
+subscribeState("strictError", 
+    disableKeyboard, 
+    clearGameQuery,
+    clearPlayerMovesCount,
+    playErrorSound,
+    counterBlink,
+    updateGameQuery,
+    handleCounterScreen, 
+    playQuery, 
+    enableKeyboard
+);
 powerStich.addEventListener("change", togglePower);
 startGameBtn.addEventListener("click", startGame);
 strictModeBtn.addEventListener("click", strictMode);

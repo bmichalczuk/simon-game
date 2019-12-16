@@ -17,6 +17,7 @@ export const handleStrictModeLed = ({strict}) => {
     ? dom.strictModeBtn.classList.add("settings__btn--strict--active")
     : dom.strictModeBtn.classList.remove("settings__btn--strict--active");
 };
+
 const screenBlink = async (text, time = 500) => {
     return new Promise(async (resolve) => {
         dom.counterScreen.textContent = text;
@@ -27,15 +28,11 @@ const screenBlink = async (text, time = 500) => {
         }, time);
     });
 };
+
 export const counterBlink = async (blinkTimes = 3) => {
-    playSound("error");
     for(let i = 0; i < 3; i++) {
         console.log("blinkblink " + i);
-        
         await sleep(200);
         await screenBlink("!!!");
     }
-};
-export const playError = ({strict}) => {
-
 };
