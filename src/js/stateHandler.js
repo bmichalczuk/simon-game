@@ -1,10 +1,9 @@
-import {getRandomNumberInRange} from "./helpers";
+
 const stateHandler = (fireEvent) => {
     return {
         set(target, property, value) {
             switch(property) {
                 case "power":
-                    console.log("powerrr");
                     if(typeof value !== "boolean") {
                         return false
                     };
@@ -22,23 +21,17 @@ const stateHandler = (fireEvent) => {
                     return true;
                 case "playerMove":
                     const {playerMoveCount, gameQuery} = target;
-                    console.log(value);
                     if (gameQuery[playerMoveCount] === Number(value)) {
-                        console.log("trafiony");
                         target.playerMoveCount++ ;
                         target.playerMoveCount === gameQuery.length && fireEvent("roundStart");
-                        console.log(target.playerMoveCount);
                         return true;
                     }
                     target.strict ? fireEvent("strictError") : fireEvent("error");
-                    
-                
                     return true;
                 case "round": 
                     
                 
                 case "strict":
-                    console.log("strict modeee");
                     target.strict = value;
                     fireEvent("strictMode");
                     return true;

@@ -3,8 +3,7 @@ import {
     onlyWhen, 
     onlyWhenNot, 
     getRandomNumberInRange, 
-    updateArray,
-    clearArray
+    updateArray
 } from "./helpers";
 
 //state
@@ -40,10 +39,9 @@ export const subscribeState = (evName, ...fn) => {
 };
     
 export const fireEvent = async (evName) => {
-    for(let i=0, max=subscribers[evName].length; i< max; i++) {
+    for(let i = 0, max = subscribers[evName].length; i < max; i++) {
         await subscribers[evName][i](data);
     }
-    //subscribers[evName].forEach(fn => fn(data));
 };
 
 const stateHandler = handler(fireEvent);
@@ -78,6 +76,6 @@ export const playerMove = field =>  state.playerMove = field;
 
 export const clearPlayerMovesCount = () => state.playerMoveCount = 0;
 
-export const clearGameQuery = clearArray(state.gameQuery);
+export const clearGameQuery = state.gameQuery.length = 0;
 
 export default state;
