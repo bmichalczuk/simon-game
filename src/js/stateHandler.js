@@ -4,9 +4,6 @@ const stateHandler = (fireEvent) => {
         set(target, property, value) {
             switch(property) {
                 case "power":
-                    if(typeof value !== "boolean") {
-                        return false
-                    };
                     target.power = value;
                     target.power ? fireEvent("powerOn") : fireEvent("powerOf");
                     return true;

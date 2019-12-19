@@ -11,9 +11,9 @@ export const handleCounterScreen = ({power, gameStarted, gameQuery}) => {
         dom.counterScreen.textContent = "";
     }
 };
-export const handleStrictModeLed = ({strict}) => {
-    console.log("strict: " + strict);
-    strict
+export const handleStrictModeLed = ({strict, power}) => {
+    console.log("handle strict: " + strict);
+    strict && power
     ? dom.strictModeBtn.classList.add("settings__btn--strict--active")
     : dom.strictModeBtn.classList.remove("settings__btn--strict--active");
 };
@@ -21,7 +21,6 @@ export const handleStrictModeLed = ({strict}) => {
 const screenBlink = async (text, time = 500) => {
     return new Promise(async (resolve) => {
         dom.counterScreen.textContent = text;
-        
         await setTimeout(() => {
             dom.counterScreen.textContent = "";
             resolve();
@@ -29,10 +28,11 @@ const screenBlink = async (text, time = 500) => {
     });
 };
 
-export const counterBlink = async (blinkTimes = 3) => {
+export const counterBlink = async ({power}) => {
     for(let i = 0; i < 3; i++) {
-        console.log("blinkblink " + i);
-        await sleep(200);
-        await screenBlink("!!!");
+        if(power) {
+            await sleep(200);
+            await screenBlink("!!!");
+        }
     }
 };

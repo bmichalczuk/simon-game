@@ -7,7 +7,6 @@ import {
     subscribeState, 
     togglePower, 
     startGame,
-    newRound,
     strictMode,
     updateGameQuery,
     clearGameQuery,
@@ -20,10 +19,8 @@ import {enableKeyboard, disableKeyboard} from "./js/keyboard";
 import {playSound} from "./js/audio";
 import {playQuery} from "./js/keyboard";
 
-const playErrorSound = () => {
-    console.log("sounddd");
-    playSound("error")
-};
+const playErrorSound = () => playSound("error");
+
 const {startGameBtn,strictModeBtn,powerStich, board} = dom;
 
 
@@ -31,8 +28,11 @@ subscribeState("powerOn",
     handleCounterScreen
 );
 subscribeState("powerOf", 
-    turnOfGame
-); //handleCounterScreen, stopGame, disableKeyboard, strictMode);
+    turnOfGame,
+    handleStrictModeLed,
+    handleCounterScreen,
+    disableKeyboard
+); 
 subscribeState("roundStart", 
     clearPlayerMovesCount, 
     disableKeyboard, 

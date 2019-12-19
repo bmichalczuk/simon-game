@@ -9,7 +9,6 @@ export const enableKeyboard = () => {
     boardBtns.forEach(btn => btn.disabled = false)
 };
 export const disableKeyboard = () => {
-    console.log("disable keyboard");
     boardBtns.forEach(btn => btn.disabled = true)
 };
 
