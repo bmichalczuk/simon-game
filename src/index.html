@@ -17,14 +17,14 @@
                     <div class="Counter__title">Count</div>
                 </div>
                 <div class="start">
-                    <button title="Start game" class="settings__btn settings__btn--start">
+                    <button title="Start game" id="start-game-btn" class="settings__btn settings__btn--start">
                         <span class="visually-hidden">Start game</span>
                     </button>
                     <div>Start</div>
                 </div>
                 <div class="strict">
-                    <div class="strict__led"></div>
-                    <button title="Turn strict mode on" class="settings__btn settings__btn--strict">
+                    <div id="strict-mode-indicator" class="strict__led"></div>
+                    <button id="strict-mode-btn" title="Turn strict mode on" class="settings__btn settings__btn--strict">
                         <span class="visually-hidden">Strict mode</span>
                     </button>
                     <div class="strict__sub">Strict mode</div>
@@ -41,10 +41,10 @@
             </div>
         </div>
         <div class="board">
-            <button class="board__btn board__btn--1"></button>
-            <button class="board__btn board__btn--2"></button>
-            <button class="board__btn board__btn--3"></button>
-            <button class="board__btn board__btn--4"></button>
+            <button disabled data-btn-index="1" class="board__btn board__btn--1"></button>
+            <button disabled data-btn-index="2" class="board__btn board__btn--2"></button>
+            <button disabled data-btn-index="3" class="board__btn board__btn--3"></button>
+            <button disabled data-btn-index="4" class="board__btn board__btn--4"></button>
         </div>
     </div>
 </body>

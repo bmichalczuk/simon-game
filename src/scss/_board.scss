@@ -9,7 +9,8 @@
         cursor: pointer;
         &--1 {
             background-color: $colorBtn1;
-            &:active {
+            &:active,
+            &.active {
                 background-color: $colorBtn1--active;
             }
             @media(min-width: 700px) {
@@ -18,7 +19,8 @@
         }
         &--2 {
             background-color: $colorBtn2;
-            &:active {
+            &:active,
+            &.active {
                 background-color: $colorBtn2--active;
             }
             @media(min-width: 700px) {
@@ -27,7 +29,8 @@
         }
         &--3 {
             background-color: $colorBtn3;
-            &:active {
+            &:active,
+            &.active {
                 background-color: $colorBtn3--active;
             }
             @media(min-width: 700px) {
@@ -36,7 +39,8 @@
         }
         &--4 {
             background-color: $colorBtn4;
-            &:active {
+            &:active,
+            &.active {
                 background-color: $colorBtn4--active;
             }
             @media(min-width: 700px) {
