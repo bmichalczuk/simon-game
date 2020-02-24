@@ -12,7 +12,6 @@ export const handleCounterScreen = ({power, gameStarted, gameQuery}) => {
     }
 };
 export const handleStrictModeLed = ({strict, power}) => {
-    console.log("handle strict: " + strict);
     strict && power
     ? dom.strictModeBtn.classList.add("settings__btn--strict--active")
     : dom.strictModeBtn.classList.remove("settings__btn--strict--active");
