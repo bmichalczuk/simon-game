@@ -1,34 +1,74 @@
-import * as dom from "./domNodes"; 
+import {keyboardBtns} from "./dom-elements";
 import {playSound} from "./audio";
-import {sleep} from "./helpers";
-const {boardBtns} = dom;
+import {makeObservable} from "./observer";
+import {state} from "./game";
+//import observerss
 
-export const enableKeyboard = () => {
-    boardBtns.forEach(btn => btn.disabled = false)
-};
-export const disableKeyboard = () => {
-    boardBtns.forEach(btn => btn.disabled = true)
-};
 
-export const simulateHit = async (btn) => {
-    return new Promise(resolve => {
-            btn.classList.add("active");
-            playSound(btn.dataset.btnIndex);
-            setTimeout(() => {
-                btn.classList.remove("active");
-                resolve();
-            },1000);
-})};
+const btns = Array.from(keyboardBtns);
 
-export const playQuery = async ({gameQuery, power}) => {
-    await sleep(1000);
-    for(let i = 0, max = gameQuery.length; i < max; i++) {
-        if (power) {
-            const index = gameQuery[i];
+function sleep(time = 1000) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, time);
+    });
+}
+
+function simulateMousedown(el) {
+    if(el) {
+        return new Promise((resolve) => {
+            el.classList.add("active");
+            playSound(el.id);
+            setTimeout(function() {
+                el.classList.remove("active");
+                resolve()
+            }, 1000);
+        });
+    }
+    
+ }
+
+function playQuery(query) {
+    return new Promise(async (resolve) => {
+        for(let i = 0, max = query.length; i < max; i++) {
+            const el = document.getElementById(query[i]);
             await sleep(100);
-            const btn = document.querySelector(`[data-btn-index="${index}"]`);
-            await simulateHit(btn);
+            await simulateMousedown(el);
         }
-        
+        resolve()
+    });
+}
+
+
+
+const keyboard = {
+    events: {
+        exampleEnd: [],
+        hit: []
+    },
+    hit(e) {
+        const id = e.target.id;
+        playSound(id);
+        this.emit("hit", id);
+    },
+    enable() {
+        btns.map((btn) => {
+            btn.disabled = false;
+        });
+    },
+    disable() {
+        btns.map((btn) => {
+            btn.disabled = true;
+        });
+    },
+    async playExample(query) {
+        this.disable();
+        await sleep();
+        await playQuery(query);
+        this.enable();
+        this.emit("exampleEnd");
     }
 };
+
+makeObservable(keyboard);
+
+export default keyboard;
